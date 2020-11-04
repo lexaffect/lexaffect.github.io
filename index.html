@@ -32,7 +32,6 @@
             <thead class="thead-dark">
                 <tr>
                     <th class="align-middle">Words</th>
-                    <th class="align-middle">Condition Type</th>
                     <th class="align-middle">Synonym Set 1</th>
                     <th class="align-middle">Synonym Set 2</th>
                 </tr>
@@ -47,15 +46,17 @@
                 dataSrc: '',  // dataset is a json array
             },
             columns: [
-                {data: 'phrase'},
-                {data: 'subcat'},
-                {data: 'synswordnet'},
-                {data: 'synsmerweb'}
+                { render: (d, t, row) => { return `${row.phrase}<br>(<em>${row.subcat.toLowerCase()}</em>)`; } },
+                { data: 'synswordnet' },
+                { data: 'synsmerweb' }
             ],
             rowGroup: {
                 dataSrc: ['focality', 'categ']  // multi level grouping
             },
-            //columnDefs: [ {width: '10%', targets: 0}, {width: '25%', targets: 1} ],
+            // columnDefs: [
+            //     // { width: '10%', targets: 0 },
+            //     // { width: '25%', targets: 1 },
+            // ],
             //autoWidth: false,  // required with custom column widths otherwise table is not responsive to viewport change
             pageLength: 10,
             ordering: false,
