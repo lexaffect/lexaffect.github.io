@@ -5,23 +5,7 @@ div#tbl_length {
 	text-align: right;
 }
 
-/* tr.dtrg-level-0 {
-	font-weight: 700;
-	background-color: chocolate;
-} */
-tr.dtrg-level-1 {
-	font-weight: 600;
-	/* background-color: aqua; */
-}
-tr.dtrg-level-1 td {
-	padding-left: 1em;
-}
-
-tr.odd td:first-child,
-tr.even td:first-child {
-	padding-left: 2.5em;
-}
-
 table.dataTable span.highlight {
 	background-color: #FFFF00;
+	border-radius: 0.28571429rem;
 }
