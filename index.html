@@ -2,8 +2,11 @@
 <html>
 
 <head>
-	<title>Affective Lexicon</title>
-    <link rel="icon" href="data:,"> <!-- prevent default favicon request -->
+    <title>Affective Lexicon</title>
+    <!-- <link rel="icon" href="data:,"> --> <!-- prevent default favicon request -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- jquery core -->
@@ -29,7 +32,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-danger">
             <a class="navbar-brand font-weight-bold">
-                <img src="img/brain.ico" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                <img src="img/brain-logo.ico" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                 Affective Lexicon
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavMarkup"
@@ -52,7 +55,7 @@
             </div>
         </div>
         <table id="tbl" class="table table-striped table-responsive" style="width: 100%;">
-            <thead class="text-light bg-primary">
+            <thead class="text-light bg-secondary">
             </thead>
         </table>
     </main>
@@ -81,15 +84,16 @@
             ordering: false,
             lengthMenu: [ [10, 20, 50, 100, -1], [10, 20, 50, 100, 'All'] ],
             searchHighlight: true,
-            stripeClasses: ['table-success', 'table-light'],
+            stripeClasses: ['table-success', 'table-primary'],
             language: {
                 paginate: {
                     next: '<span aria-hidden="true" aria-label="Next">&raquo;</span>',
                     previous: '<span aria-hidden="true" aria-label="Previous">&laquo;</span>'
-                }
+                },
+                lengthMenu: '_MENU_ pp'
             },
             // Swap search box and page size dropdown: https://datatables.net/reference/option/dom
-            dom: "<'row'<'col-sm-12 col-md-6'f><'col-sm-12 col-md-6'l>>" + "<'row'<'col-sm-12'tr>>" + 
+            dom: "<'row'<'col-6'f><'col-6'l>>" + "<'row'<'col-sm-12'tr>>" + 
                  "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         };
 
