@@ -1,11 +1,17 @@
-div#tbl_filter {
-	text-align: left;
+div.dataTables_filter {
+	text-align: left !important;
 }
-div#tbl_length {
-	text-align: right;
+
+div.dataTables_length {
+	text-align: right !important;
 }
 
 table.dataTable span.highlight {
 	background-color: #FFFF00;
 	border-radius: 0.28571429rem;
+}
+
+/* navbar expand/collapse animation disable */
+.collapsing {
+	transition: none !important;
 }
