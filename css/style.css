@@ -1,9 +1,9 @@
-div.dataTables_filter {
-	text-align: left !important;
+div.dataTables_wrapper div.dataTables_filter {
+	text-align: left;
 }
 
-div.dataTables_length {
-	text-align: right !important;
+div.dataTables_wrapper div.dataTables_length {
+	text-align: right;
 }
 
 table.dataTable span.highlight {
@@ -14,4 +14,12 @@ table.dataTable span.highlight {
 /* navbar expand/collapse animation disable */
 .collapsing {
 	transition: none !important;
+}
+
+.tooltip-inner {
+	text-align: left;
+}
+
+.carousel .carousel-item {
+    transition-duration: 300ms;
 }
