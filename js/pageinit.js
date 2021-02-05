@@ -1,5 +1,5 @@
 const dtOptions = {
-    ajax: 'dataset/syns.json',
+    data: synsdata.data,
     columns: [ { render: renderCell } ],
     pageLength: 10,
     ordering: false,
@@ -24,9 +24,7 @@ const dtOptions = {
 // initialize datatable on doc ready. Enable tooltips whenever table is redrawn
 let dataTable;
 $( () => {
-    dataTable = $('#tbl').DataTable(dtOptions).on( 'draw', () => {
-        $('[data-toggle="tooltip"]').tooltip({ placement: 'auto' });
-    });
+    dataTable = $('#tbl').DataTable(dtOptions).on('draw', enableToolTips);
 
     $('.navbar-brand, .nav-item, .back-home').click( (e) => {
         e.preventDefault();
@@ -59,9 +57,11 @@ function renderCell(d, t, row) {
     let wordTooltip = focality + ' &gt; ' + categ + ' &gt; ' + subcat;
 
     contents = `
-    <p>
-        <span class="font-weight-bold" >${row.phrase}</span> 
+    <p class="float-right">
         <abbr class="initialism" data-toggle="tooltip" title="${wordTooltip}">${wordClassAbbrev}</abbr>
+    </p>
+    <p>
+        <span class="font-weight-bold" >${row.phrase}</span>
     </p>`;
 
     if (row.synswnet)
@@ -87,4 +87,10 @@ function onTableLoad() {
     });
     searchBox.focus();
     $('.carousel').carousel({interval: false}) // initialize without auto sliding
+
+    enableToolTips()
+}
+
+function enableToolTips() {
+    $('[data-toggle="tooltip"]').tooltip({ placement: 'auto' })
 }
