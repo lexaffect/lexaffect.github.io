@@ -20,6 +20,17 @@ table.dataTable span.highlight {
 	text-align: left;
 }
 
-.carousel .carousel-item {
-    transition-duration: 300ms;
+/* Hide other pages in the beginning */
+div.slides:not([data-slide-index="0"]) {
+	display: none;
 }
+
+/* body {overflow: hidden;} */
+
+/* #resize_wrapper {
+	position: absolute;
+	top: 5em;
+	left: 1em;
+	right: 1em;
+	bottom: 1em;
+} */

@@ -24,14 +24,14 @@
     <!-- jquery highlight plugin, DT concatenated js (core, bootstrap), DT search highlight plugin -->
     <script src="js/jquery.highlight.js"></script>
     <script src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.21/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
-    
+    <script src="https://cdn.datatables.net/plug-ins/1.10.22/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
+    <script src="https:////cdn.datatables.net/plug-ins/1.10.22/features/scrollResize/dataTables.scrollResize.min.js"></script>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-danger">
-            <a href="#" class="navbar-brand" data-carousel-target="0">
+            <a href="#" class="navbar-brand" data-slides-target="0">
                 <img src="img/brain-logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                 Affective Lexicon
             </a>
@@ -39,70 +39,66 @@
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNavMarkup">
+            <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNavMarkup" style="z-index: 20;">
                 <div class="navbar-nav ml-auto">
-                    <a id="nav-about" data-carousel-target="1" class="nav-item nav-link active" href="#">About</a>
-                    <a id="nav-credits" data-carousel-target="2" class="nav-item nav-link active" href="#">Credits</a>
+                    <a id="nav-about" data-slides-target="1" class="nav-item nav-link active" href="#">About</a>
+                    <a id="nav-credits" data-slides-target="2" class="nav-item nav-link active" href="#">Credits</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main">
-        <div id="carouselExampleSlidesOnly" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="container-xl">
-                        <div class="row">
-                            <h5 class="mt-3 mb-3 mx-auto">Internal Mental Condition</h5>
-                        </div>
-                        <table id="tbl" class="table table-striped table-responsive" style="width: 100%;">
-                            <thead class="text-light bg-secondary">
-                                <tr><th>Words and Synonyms</th></tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container-xl">
-                        <h5 class="mt-3">What is it</h5>
-                        <p>This simple app has been developed to aid information science and psychology researchers. All words in the lexicon have been obtained from the following study:</p>
-                        <p style="text-indent: -25px; padding-left: 25px;">Ortony, A., Clore, G. L., & Foss, M. A. (1987). The Referential Structure of the Affective Lexicon. <span class="font-italic">Cognitive Science, 11</span>(3), 341-364. <a href="https://doi.org/10.1207/s15516709cog1103_4">https://doi.org/10.1207/s15516709cog1103_4</a></p>
-                        <p>Synonyms for each word have been collected from two dictionaries so that it is easier to look up if similar words exist in the lexicon.</p>
-                        <h5>How to use</h5>
-                        <p>Just start typing any word in the search box and the table will continuously filter and highlight any matching rows.</p>
-                        <div class="row justify-content-center">
-                            <div class="col-8 col-md-6 col-xl-4">
-                                <button type="button" data-carousel-target="0" class="btn btn-info btn-lg btn-block back-home">&laquo; Back</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container-xl" >
-                        <h5 class="mt-3">Dictionary Sources</h5>
-                        <p>Synonym Set 1 is sourced from <a href="https://www.datamuse.com/api/">Datamuse</a> project, which is based on <a href="https://wordnet.princeton.edu/">WordNet</a> lexical database.</p>
-                        <p>Synonyms Set 2 is obtained from <a href="https://www.merriam-webster.com/shop-dictionaries/thesauruses/collegiate-thesaurus">Merriam-Webster's Collegiate&reg; Thesaurus</a>.</p>
-                        <p>Copyrights of all data belong to respective projects.</p>
-                        <h5>Software</h5>
-                        <p>Following free software libraries have been utilized</p>
-                        <ul>
-                            <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
-                            <li><a href="https://jquery.com/">jQuery</a></li>
-                            <li><a href="https://datatables.net/">Datatables</a></li>
-                            <li><a href="https://bartaz.github.io/sandbox.js/jquery.highlight.html">jQuery Highlight Plugin</a></li>
-                        </ul>
-                        <h5>Graphics</h5>
-                        <p><a href="https://iconarchive.com/show/medical-health-icons-by-graphicloads/human-brain-icon.html">Logo Image</a> and <a href="https://emojipedia.org/twitter/twemoji-2.5/brain/">Favicon</a></p>
-                        <div class="row justify-content-center">
-                            <div class="col-8 col-md-6 col-xl-4">
-                                <button type="button" data-carousel-target="0" class="btn btn-info btn-lg btn-block back-home">&laquo; Back</button>
-                            </div>
-                        </div>
-                    </div>
+
+        <div class="container-xl slides" data-slide-index="0">
+            <div class="row">
+                <h5 class="mt-3 mb-3 mx-auto">Internal Mental Condition</h5>
+            </div>
+                <!-- <div id="resize_wrapper">                     -->
+                <table id="tbl" class="table table-striped table-responsive" style="width: 100%;">
+                    <thead class="text-light bg-secondary">
+                        <tr><th>Words and Synonyms</th></tr>
+                    </thead>
+                </table>
+                <!-- </div> -->
+        </div>
+
+        <div class="container-xl slides overflow-auto" data-slide-index="1">
+            <h5 class="mt-3">What is it</h5>
+            <p>This simple app has been developed to aid information science and psychology researchers. All words in the lexicon have been obtained from the following study:</p>
+            <p style="text-indent: -25px; padding-left: 25px;">Ortony, A., Clore, G. L., & Foss, M. A. (1987). The Referential Structure of the Affective Lexicon. <span class="font-italic">Cognitive Science, 11</span>(3), 341-364. <a href="https://doi.org/10.1207/s15516709cog1103_4">https://doi.org/10.1207/s15516709cog1103_4</a></p>
+            <p>Synonyms for each word have been collected from two dictionaries so that it is easier to look up if similar words exist in the lexicon.</p>
+            <h5>How to use</h5>
+            <p>Just start typing any word in the search box and the table will continuously filter and highlight any matching rows.</p>
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-6 col-xl-4">
+                    <button type="button" data-slides-target="0" class="btn btn-info btn-lg btn-block back-home">&laquo; Back</button>
                 </div>
             </div>
         </div>
+
+        <div class="container-xl slides overflow-auto" data-slide-index="2" >
+            <h5 class="mt-3">Dictionary Sources</h5>
+            <p>Synonym Set 1 is sourced from <a href="https://www.datamuse.com/api/">Datamuse</a> project, which is based on <a href="https://wordnet.princeton.edu/">WordNet</a> lexical database.</p>
+            <p>Synonyms Set 2 is obtained from <a href="https://www.merriam-webster.com/shop-dictionaries/thesauruses/collegiate-thesaurus">Merriam-Webster's Collegiate&reg; Thesaurus</a>.</p>
+            <p>Copyrights of all data belong to respective projects.</p>
+            <h5>Software</h5>
+            <p>Following free software libraries have been utilized</p>
+            <ul>
+                <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+                <li><a href="https://jquery.com/">jQuery</a></li>
+                <li><a href="https://datatables.net/">Datatables</a></li>
+                <li><a href="https://bartaz.github.io/sandbox.js/jquery.highlight.html">jQuery Highlight Plugin</a></li>
+            </ul>
+            <h5>Graphics</h5>
+            <p><a href="https://iconarchive.com/show/medical-health-icons-by-graphicloads/human-brain-icon.html">Logo Image</a> and <a href="https://emojipedia.org/twitter/twemoji-2.5/brain/">Favicon</a></p>
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-6 col-xl-4">
+                    <button type="button" data-slides-target="0" class="btn btn-info btn-lg btn-block back-home">&laquo; Back</button>
+                </div>
+            </div>
+        </div>
+
     </main>
     <script src="js/syns.js?v=1"></script>
     <script src="js/pageinit.js?v=2"></script>

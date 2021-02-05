@@ -7,6 +7,9 @@ const dtOptions = {
     searchHighlight: true,
     stripeClasses: ['table-success', 'table-primary'],
     processing: true,
+    // scrollResize: true,
+    // scrollY: '70vh', // value does not matter, scrollResize will override it
+    paging: true,
     language: {
         paginate: {
             next: '<span aria-hidden="true" aria-label="Next">&raquo;</span>',
@@ -17,22 +20,26 @@ const dtOptions = {
     },
     // Swap search box and page size dropdown: https://datatables.net/reference/option/dom
     dom: "<'row'<'col-6'f><'col-6'l>>" + "<'row'<'col-sm-12'tr>>" + 
-         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+         "<'row'<'col-sm-12 col-md-7'i><'col-sm-12 col-md-5'p>>",
     initComplete: onTableLoad
 };
 
 // initialize datatable on doc ready. Enable tooltips whenever table is redrawn
 let dataTable;
 $( () => {
-    dataTable = $('#tbl').DataTable(dtOptions).on('draw', enableToolTips);
+    dataTable = $('#tbl').DataTable(dtOptions).on('draw', enableToolTips);    
 
     $('.navbar-brand, .nav-item, .back-home').click( (e) => {
         e.preventDefault();
-        slideIndex = $(e.target).data().carouselTarget;
+        targetIndex = $(e.target).data().slidesTarget;
         $('.navbar-collapse').collapse('hide');
-        $('.carousel').carousel(slideIndex);
+        switchViews(targetIndex);
     } );
 });
+
+function switchViews(target) {
+    $('div.slides').hide(0, ()=> $(`div.slides[data-slide-index="${target}"]`).show(0) );    
+}
 
 function renderCell(d, t, row) {
     let focality = row.focality, categ = row.categ, subcat = row.subcat;
