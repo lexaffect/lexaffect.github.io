@@ -25,7 +25,9 @@ div.slides:not([data-slide-index="0"]) {
 	display: none;
 }
 
-/* body {overflow: hidden;} */
+body {
+	overflow: hidden;
+}
 
 /* #resize_wrapper {
 	position: absolute;

@@ -1,26 +1,26 @@
 const dtOptions = {
     data: synsdata.data,
     columns: [ { render: renderCell } ],
-    pageLength: 10,
+    // pageLength: 10,
     ordering: false,
-    lengthMenu: [ [10, 20, 50, 100, -1], [10, 20, 50, 100, 'All'] ],
+    // lengthMenu: [ [10, 20, 50, 100, -1], [10, 20, 50, 100, 'All'] ],
     searchHighlight: true,
     stripeClasses: ['table-success', 'table-primary'],
     processing: true,
     // scrollResize: true,
-    // scrollY: '70vh', // value does not matter, scrollResize will override it
-    paging: true,
+    scrollY: '70vh', // value will be overridden by scrollResize if enabled
+    paging: false,
     language: {
-        paginate: {
-            next: '<span aria-hidden="true" aria-label="Next">&raquo;</span>',
-            previous: '<span aria-hidden="true" aria-label="Previous">&laquo;</span>'
-        },
-        lengthMenu: '_MENU_ pp',
+        // paginate: {
+        //     next: '<span aria-hidden="true" aria-label="Next">&raquo;</span>',
+        //     previous: '<span aria-hidden="true" aria-label="Previous">&laquo;</span>'
+        // },
+        // lengthMenu: '_MENU_ pp',
         processing: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>'
     },
     // Swap search box and page size dropdown: https://datatables.net/reference/option/dom
     dom: "<'row'<'col-6'f><'col-6'l>>" + "<'row'<'col-sm-12'tr>>" + 
-         "<'row'<'col-sm-12 col-md-7'i><'col-sm-12 col-md-5'p>>",
+         "<'row'<'col-sm-12'i><'col-sm-12 col-md-5'p>>",
     initComplete: onTableLoad
 };
 
