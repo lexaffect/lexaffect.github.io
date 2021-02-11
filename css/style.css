@@ -11,13 +11,12 @@ table.dataTable span.highlight {
 	border-radius: 0.28571429rem;
 }
 
-/* navbar expand/collapse animation disable */
-.collapsing {
-	transition: none !important;
-}
-
 .tooltip-inner {
 	text-align: left;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+	padding-top: 0.3em;
 }
 
 /* Hide other pages in the beginning */
@@ -25,14 +24,8 @@ div.slides:not([data-slide-index="0"]) {
 	display: none;
 }
 
-body {
-	overflow: hidden;
+/* Wrapper around datatable.
+Take up all vertical space minus navbar and heading */
+div#resize_wrapper {
+	height: calc(100vh - 7em);
 }
-
-/* #resize_wrapper {
-	position: absolute;
-	top: 5em;
-	left: 1em;
-	right: 1em;
-	bottom: 1em;
-} */

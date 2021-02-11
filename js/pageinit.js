@@ -1,40 +1,53 @@
 const dtOptions = {
     data: synsdata.data,
     columns: [ { render: renderCell } ],
-    // pageLength: 10,
     ordering: false,
-    // lengthMenu: [ [10, 20, 50, 100, -1], [10, 20, 50, 100, 'All'] ],
     searchHighlight: true,
     stripeClasses: ['table-success', 'table-primary'],
     processing: true,
-    // scrollResize: true,
-    scrollY: '70vh', // value will be overridden by scrollResize if enabled
+    scrollResize: true,
+    scrollY: '300', // value will be overridden by scrollResize (if enabled)
+    scrollCollapse: true,
     paging: false,
     language: {
-        // paginate: {
-        //     next: '<span aria-hidden="true" aria-label="Next">&raquo;</span>',
-        //     previous: '<span aria-hidden="true" aria-label="Previous">&laquo;</span>'
-        // },
-        // lengthMenu: '_MENU_ pp',
-        processing: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>'
+        processing: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>',
+        info: '_TOTAL_ rows',
+        infoEmpty: '_TOTAL_ rows',
+        infoFiltered: '(out of _MAX_)'
     },
-    // Swap search box and page size dropdown: https://datatables.net/reference/option/dom
-    dom: "<'row'<'col-6'f><'col-6'l>>" + "<'row'<'col-sm-12'tr>>" + 
-         "<'row'<'col-sm-12'i><'col-sm-12 col-md-5'p>>",
-    initComplete: onTableLoad
+    initComplete: enableToolTips,
+    dom: "<'row'<'col-12'tr>><'row'<'col-12 text-center'i>>",    
 };
 
-// initialize datatable on doc ready. Enable tooltips whenever table is redrawn
 let dataTable;
-$( () => {
-    dataTable = $('#tbl').DataTable(dtOptions).on('draw', enableToolTips);    
 
+// jQuery on doc ready
+$( () => {
+    // initialize datatable. Re-enable tooltips on table redraw (needed when paging is on)
+    dataTable = $('#tbl').DataTable(dtOptions).on('draw', enableToolTips);
+
+    // Enable switching views on navbar and back buttons
     $('.navbar-brand, .nav-item, .back-home').click( (e) => {
         e.preventDefault();
         targetIndex = $(e.target).data().slidesTarget;
         $('.navbar-collapse').collapse('hide');
         switchViews(targetIndex);
     } );
+
+    // Define searchbox functionality
+    let searchBox = $('#th-search-box');
+    searchBox.on('keyup search', function(e) {
+        let txt = this.value;
+        // Do not search on 1 or 2 letters, very inefficient
+        if (txt.length >= 3) {
+            dataTable.search(txt).draw();
+        }
+        else if (txt == '') {
+            // Ensure we clear the search if user backspaces all thy way (or clears textbox by Esc)
+            dataTable.search('').draw();
+        }
+    });
+    searchBox.focus(); // active on page load
 });
 
 function switchViews(target) {
@@ -78,24 +91,6 @@ function renderCell(d, t, row) {
         contents += `<h6>Set 2</h6><p>${row.synswebst}</p>`
 
     return contents;
-}
-
-function onTableLoad() {
-    let searchBox = $('div.dataTables_filter input');
-    searchBox.off(); // Remove default datatable search logic
-    searchBox.on('input', (e) => {
-        let txt = searchBox.val()
-        if (txt.length >= 3) {
-            dataTable.search(txt).draw();
-        }
-        else if (txt == '') { // Ensure we clear the search if user backspaces far enough
-            dataTable.search('').draw();
-        }
-    });
-    searchBox.focus();
-    $('.carousel').carousel({interval: false}) // initialize without auto sliding
-
-    enableToolTips()
 }
 
 function enableToolTips() {
