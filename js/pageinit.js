@@ -16,7 +16,7 @@ const dtOptions = {
         infoFiltered: '(out of _MAX_)'
     },
     initComplete: enableToolTips,
-    dom: "<'row'<'col-12'tr>><'row'<'col-12 text-center'i>>",    
+    dom: "<'row'<'col-12'tr>><'row'<'col-12 text-center small'i>>",    
 };
 
 let dataTable;
@@ -84,11 +84,13 @@ function renderCell(d, t, row) {
         <span class="font-weight-bold" >${row.phrase}</span>
     </p>`;
 
-    if (row.synswnet)
-        contents += `<h6>Set 1</h6><p>${row.synswnet}</p>`;
+    if (row.synswnet) {
+        contents += `<p>${row.synswnet}</p><hr style="width: 90%;">`;
+    }
     
-    if (row.synswebst)
-        contents += `<h6>Set 2</h6><p>${row.synswebst}</p>`
+    if (row.synswebst) {
+        contents += `<p>${row.synswebst}</p>`
+    }
 
     return contents;
 }
