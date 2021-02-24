@@ -13,26 +13,17 @@ const dtOptions = {
         processing: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>',
         info: '_TOTAL_ rows',
         infoEmpty: '_TOTAL_ rows',
-        infoFiltered: '(out of _MAX_)'
+        infoFiltered: 'out of _MAX_'
     },
     initComplete: enableToolTips,
-    dom: "<'row'<'col-12'tr>><'row'<'col-12 text-center small'i>>",    
+    dom: "<'row'<'col-12'tr>><'row'<'col-12 text-center small'i>>",
 };
 
 let dataTable;
 
-// jQuery on doc ready
-$( () => {
+jQuery(_ => {
     // initialize datatable. Re-enable tooltips on table redraw (needed when paging is on)
     dataTable = $('#tbl').DataTable(dtOptions).on('draw', enableToolTips);
-
-    // Enable switching views on navbar and back buttons
-    $('.navbar-brand, .nav-item, .back-home').click( (e) => {
-        e.preventDefault();
-        targetIndex = $(e.target).data().slidesTarget;
-        $('.navbar-collapse').collapse('hide');
-        switchViews(targetIndex);
-    } );
 
     // Define searchbox functionality
     let searchBox = $('#th-search-box');
@@ -49,10 +40,6 @@ $( () => {
     });
     searchBox.focus(); // active on page load
 });
-
-function switchViews(target) {
-    $('div.slides').hide(0, ()=> $(`div.slides[data-slide-index="${target}"]`).show(0) );    
-}
 
 function renderCell(d, t, row) {
     let focality = row.focality, categ = row.categ, subcat = row.subcat;
@@ -87,7 +74,7 @@ function renderCell(d, t, row) {
     if (row.synswnet) {
         contents += `<p>${row.synswnet}</p><hr style="width: 90%;">`;
     }
-    
+
     if (row.synswebst) {
         contents += `<p>${row.synswebst}</p>`
     }

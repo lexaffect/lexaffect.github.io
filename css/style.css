@@ -1,9 +1,11 @@
-div.dataTables_wrapper div.dataTables_filter {
-	text-align: left;
+/* Wrapper around datatable.
+Take up all vertical space minus navbar and heading */
+div#resize_wrapper {
+	height: calc(100vh - 7rem);
 }
 
-div.dataTables_wrapper div.dataTables_length {
-	text-align: right;
+div.dataTables_wrapper div.dataTables_info {
+	padding-top: 0;
 }
 
 table.dataTable span.highlight {
@@ -15,17 +17,7 @@ table.dataTable span.highlight {
 	text-align: left;
 }
 
-div.dataTables_wrapper div.dataTables_info {
-	padding-top: 0.3em;
-}
-
-/* Hide other pages in the beginning */
+/* Only show 1st view in the beginning */
 div.slides:not([data-slide-index="0"]) {
 	display: none;
-}
-
-/* Wrapper around datatable.
-Take up all vertical space minus navbar and heading */
-div#resize_wrapper {
-	height: calc(100vh - 7em);
 }

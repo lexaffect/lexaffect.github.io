@@ -2,114 +2,205 @@
 <html>
 
 <head>
-    <meta charset="utf-8" /> 
-    <title>Affective Lexicon</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- bootstrap core, DT bs4 styled css -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.css" />
-    
-    <!-- additional app styling -->
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=2" />
+  <meta charset="utf-8" />
+  <title>Affective Lexicon</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- jquery core, bootstrap js (includes popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- bootstrap core, DT bs4 styled css -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.css" />
 
-    <!-- jquery highlight plugin, DT concatenated js (core + bootstrap) -->
-    <script src="js/jquery.highlight.js"></script>
-    <script src="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.js"></script>
+  <!-- additional app styling -->
+  <link rel="stylesheet" type="text/css" href="css/style.css?v=2" />
 
-    <!-- DT plugins: search highlight, scroll resize  -->
-    <script src="https://cdn.datatables.net/plug-ins/1.10.22/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
-    <script src="https:////cdn.datatables.net/plug-ins/1.10.22/features/scrollResize/dataTables.scrollResize.min.js"></script>
+  <!-- jquery core, bootstrap js (includes popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- jquery highlight plugin, DT concatenated js (core + bootstrap) -->
+  <script src="js/jquery.highlight.js"></script>
+  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.js"></script>
+
+  <!-- DT plugins: search highlight, scroll resize  -->
+  <script
+    src="https://cdn.datatables.net/plug-ins/1.10.22/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
+  <script
+    src="https:////cdn.datatables.net/plug-ins/1.10.22/features/scrollResize/dataTables.scrollResize.min.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-danger">
-            <a href="#" class="navbar-brand" data-slides-target="0">
-                <img src="img/brain-logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-                Affective Lexicon
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNavMarkup" style="z-index: 20;">
-                <div class="navbar-nav ml-auto">
-                    <a id="nav-about" data-slides-target="1" class="nav-item nav-link active" href="#">About</a>
-                    <a id="nav-credits" data-slides-target="2" class="nav-item nav-link active" href="#">Credits</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main role="main">
-
-        <div class="container-xl slides" data-slide-index="0">
-            <div class="row">
-                <h5 class="mt-3 mb-3 mx-auto">Internal Mental Condition</h5>
-            </div>
-			<div id="resize_wrapper">
-				<table id="tbl" class="table table-striped">
-					<thead class="text-light bg-secondary">
-						<tr>
-							<th>Words & Synonyms
-								<div class="col-6 col-md-4 col-lg-3 px-0 float-right">
-									<input type="search" id="th-search-box" class="form-control form-control-sm" placeholder="Search..." />
-								</div>
-							</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-danger">
+      <a href="#" class="navbar-brand" data-slides-target="0">
+        <img src="img/brain-logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Information Analysis
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNavMarkup" style="z-index: 20;">
+        <div class="navbar-nav ml-auto">
+          <a id="nav-affective" data-slides-target="0" class="nav-item nav-link active" href="#">Affective Lexicon</a>
+          <a id="nav-sttr" data-slides-target="1" class="nav-item nav-link" href="#">Type Token Ratio</a>
+          <a id="nav-about" data-slides-target="2" class="nav-item nav-link" href="#">About</a>
+          <a id="nav-credits" data-slides-target="3" class="nav-item nav-link" href="#">Credits</a>
         </div>
+      </div>
+    </nav>
+  </header>
 
-        <div class="container-xl slides" data-slide-index="1">
-            <h5 class="mt-3">What is it</h5>
-            <p>This simple app has been developed to aid information science and psychology researchers. All words in the lexicon have been obtained from the following study:</p>
-            <p style="text-indent: -25px; padding-left: 25px;">Ortony, A., Clore, G. L., & Foss, M. A. (1987). The Referential Structure of the Affective Lexicon. <span class="font-italic">Cognitive Science, 11</span>(3), 341-364. <a href="https://doi.org/10.1207/s15516709cog1103_4">https://doi.org/10.1207/s15516709cog1103_4</a></p>
-            <p>Synonyms for each word have been collected from two dictionaries so that it is easier to look up if similar words exist in the lexicon.</p>
-            <h5>How to use</h5>
-            <p>Just start typing any word in the search box and the table will continuously filter and highlight any matching rows.</p>
-            <div class="row justify-content-center">
-                <div class="col-8 col-md-6 col-xl-4">
-                    <button type="button" data-slides-target="0" class="btn btn-info btn-lg btn-block back-home">&laquo; Home</button>
-                </div>
-            </div>
+  <main role="main">
+
+    <div class="container-xl slides" data-slide-index="0">
+      <div class="row my-2 text-center">
+        <div class="col-12">
+          <h4>Internal Mental Conditions</h4>
         </div>
-
-        <div class="container-xl slides" data-slide-index="2" >
-            <h5 class="mt-3">Dictionary Sources</h5>
-            <p>Synonym Set 1 is sourced from <a href="https://www.datamuse.com/api/">Datamuse</a> project, which is based on <a href="https://wordnet.princeton.edu/">WordNet</a> lexical database.</p>
-            <p>Synonyms Set 2 is obtained from <a href="https://www.merriam-webster.com/shop-dictionaries/thesauruses/collegiate-thesaurus">Merriam-Webster's Collegiate&reg; Thesaurus</a>.</p>
-            <p>Copyrights of all data belong to respective projects.</p>
-            <h5>Software</h5>
-            <p>Following free software libraries have been utilized</p>
-            <ul>
-                <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
-                <li><a href="https://jquery.com/">jQuery</a></li>
-                <li><a href="https://datatables.net/">Datatables</a></li>
-                <li><a href="https://bartaz.github.io/sandbox.js/jquery.highlight.html">jQuery Highlight Plugin</a></li>
-            </ul>
-            <h5>Graphics</h5>
-            <p><a href="https://iconarchive.com/show/medical-health-icons-by-graphicloads/human-brain-icon.html">Logo Image</a> and <a href="https://emojipedia.org/twitter/twemoji-2.5/brain/">Favicon</a></p>
-            <div class="row justify-content-center">
-                <div class="col-8 col-md-6 col-xl-4">
-                    <button type="button" data-slides-target="0" class="btn btn-info btn-lg btn-block back-home">&laquo; Home</button>
+      </div>
+      <div id="resize_wrapper">
+        <table id="tbl" class="table table-striped">
+          <thead class="text-light bg-secondary">
+            <tr>
+              <th>Words & Synonyms
+                <div class="col-6 col-md-4 col-lg-3 px-0 float-right">
+                  <input type="search" id="th-search-box" class="form-control form-control-sm"
+                    placeholder="Search..." />
                 </div>
-            </div>
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+
+    <div class="container-xl slides" data-slide-index="1">
+      <div class="row my-3 mb-md-4 text-center">
+        <div class="col-12">
+          <h4>Standardized type to token ratio calculator</h4>
         </div>
+      </div>
 
-    </main>
+      <form id="sttr-form">
+        <div class="form-group mb-3 row">
+          <label for="corpus-textarea" class="col-md-3 col-form-label form-control-lg my-auto">Text to analyze</label>
+          <div class="col-md-9">
+            <div class="row mb-1">
+              <div class="col-12 text-right">
+                <button class="btn btn-info" type="button" id="browse-button">Browse</button>
+                <button class="btn btn-warning" type="button" id="clear-button">Clear</button>
+                <input type="file" id="corpus-input" accept=".txt,text/plain" class="d-none" />
+              </div>
+            </div>
+            <textarea class="form-control form-control" id="corpus-textarea" name="corpus-textarea" rows="10"
+              placeholder="Paste the text to analyze &#10;or click 'Browse' to choose a text file." required></textarea>
+            <small class="form-text text-muted">Token Count: <span id="corpus-tokencount">0</span></small>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label for="segment-size" class="col-md-3 col-form-label">Segment Size</label>
+          <div class="col-md-9">
+            <input type="number" class="form-control form-control" min="50" value="200" id="segment-size"
+              name="segment-size" required>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label for="hyphen-behav-op1" class="col-md-3 col-form-label">Treat hyphenated words as</label>
+          <div class="col-md-9 my-auto">
+            <div class="custom-control custom-control-inline custom-radio">
+              <input class="form-check-input custom-control-input" type="radio" name="hyphen-behav"
+                id="hyphen-behav-op1" checked value="single">
+              <label class="form-check-label custom-control-label" for="hyphen-behav-op1">a single token</label>
+            </div>
+            <div class="custom-control custom-control-inline custom-radio">
+              <input class="form-check-input custom-control-input" type="radio" name="hyphen-behav"
+                id="hyphen-behav-op2" value=" multiple">
+              <label class="form-check-label custom-control-label" for="hyphen-behav-op2">multiple tokens</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-4 mb-4 row">
+          <label class="col-md-3 col-form-label"></label>
+          <div class="col-md-9">
+            <button class="btn btn-primary btn-lg" id="analyze-button" type="submit">Submit</button>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="form-group mt-4 mb-3 row">
+          <label for="sttr-result" class="col-md-3 col-form-label form-control-lg">STTR Results</label>
+          <div class="col-6 col-md-4 mt-2 mt-md-0">
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr class="table-primary">
+                  <th>Segment #</th>
+                  <th>TTR</th>
+                </tr>
+              </thead>
+              <tbody id="sttr-results">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
 
-    <script src="js/syns.js?v=1"></script> <!-- dataset -->
-    <script src="js/pageinit.js?v=3"></script> <!-- app logic -->
+    <div class="container-xl slides" data-slide-index="2">
+      <h5 class="mt-3">What is it</h5>
+      <p>This simple app has been developed to aid information science and psychology researchers. All words in the
+        lexicon have been obtained from the following study:</p>
+      <p style="text-indent: -25px; padding-left: 25px;">Ortony, A., Clore, G. L., & Foss, M. A. (1987). The Referential
+        Structure of the Affective Lexicon. <span class="font-italic">Cognitive Science, 11</span>(3), 341-364. <a
+          href="https://doi.org/10.1207/s15516709cog1103_4">https://doi.org/10.1207/s15516709cog1103_4</a></p>
+      <p>Synonyms for each word have been collected from two dictionaries so that it is easier to look up if similar
+        words exist in the lexicon.</p>
+      <h5>How to use</h5>
+      <p>Just start typing any word in the search box and the table will continuously filter and highlight any matching
+        rows.</p>
+    </div>
+
+    <div class="container-xl slides" data-slide-index="3">
+      <h5 class="mt-3">Dictionary Sources</h5>
+      <p>Synonym Set 1 is sourced from <a href="https://www.datamuse.com/api/">Datamuse</a> project, which is based on
+        <a href="https://wordnet.princeton.edu/">WordNet</a> lexical database.</p>
+      <p>Synonyms Set 2 is obtained from <a
+          href="https://www.merriam-webster.com/shop-dictionaries/thesauruses/collegiate-thesaurus">Merriam-Webster's
+          Collegiate&reg; Thesaurus</a>.</p>
+      <p>Copyrights of all data belong to respective projects.</p>
+      <h5>Software</h5>
+      <p>Following free software libraries have been utilized</p>
+      <ul>
+        <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+        <li><a href="https://jquery.com/">jQuery</a></li>
+        <li><a href="https://datatables.net/">Datatables</a></li>
+        <li><a href="https://bartaz.github.io/sandbox.js/jquery.highlight.html">jQuery Highlight Plugin</a></li>
+      </ul>
+      <h5>Graphics</h5>
+      <p><a href="https://iconarchive.com/show/medical-health-icons-by-graphicloads/human-brain-icon.html">Logo
+          Image</a> and <a href="https://emojipedia.org/twitter/twemoji-2.5/brain/">Favicon</a></p>
+    </div>
+
+  </main>
+
+  <script>
+    jQuery(_ => {
+      // Enable navbar view switching
+      $('.navbar-brand, .nav-item').click(e => {
+          e.preventDefault();
+          targetIndex = $(e.target).data().slidesTarget;
+          $('.navbar-collapse').collapse('hide');
+          $('div.slides').hide(0, _ => $(`div.slides[data-slide-index="${targetIndex}"]`).show(0));
+          $('a.nav-item').removeClass('active');
+          $(`a.nav-item:eq(${targetIndex})`).addClass('active');
+      });
+    });
+  </script>
+  <script src="js/syns.js?v=1"></script> <!-- affective lexicon dataset -->
+  <script src="js/affective.js?v=1"></script>
+  <script src="js/sttr.js?v=1"></script>
 </body>
 
 </html>
