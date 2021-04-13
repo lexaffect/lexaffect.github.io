@@ -1,7 +1,6 @@
-let corpusText, tokenArray, ttrValues;
-jQuery(bindHandlers);
+let corpusText, tokenArray;
 
-function bindHandlers() {
+jQuery(function bindHandlers() {
     $('#corpus-input').change(e => {
         const reader = new FileReader();
         let file = e.target.files[0];
@@ -17,7 +16,8 @@ function bindHandlers() {
     $('#browse-button').click(_ => $('#corpus-input').trigger('click'));
     $('#clear-button').click(_ => {
 		$('#corpus-textarea').val('').trigger('input');
-		$('tbody#sttr-results tr').remove();
+		$('#sttr-results').val('');
+        $('#segment-count').html('');
 	});
     $('input[type=radio][name=hyphen-behav]').change(preprocessText);
     $('#corpus-textarea').on('input', preprocessText);
@@ -29,20 +29,26 @@ function bindHandlers() {
 		$('#analyze-button').removeAttr('disabled').html('Submit')
     });
     checkFormValid();
-}
+});
 
 function preprocessText() {
     corpusText = $('#corpus-textarea').val();
 
-    corpusText = corpusText
-    .trim()
-    .toLowerCase()
-    .replace(/[,.;:]/g, ' ')  // dots, commas & colons to spaces
-    .replace(/[\t\r\n\x0B\x0C\u0085\u2028\u2029]+/g, ' ')  // tabs & all newlines to spaces https://stackoverflow.com/a/34936253/1427771
-    .replace(/[~`!@#$%^&*(){}[\]"'<>?\/\\\|_+=]/g, '')  // remove punctuation
-    .replace(/[\u2018\u2019\u201C\u201D\u2013\u2014\u2026]/g, '')  // remove fancy single quotes, double quotes, en + em dashes, ellipsis
-    .replace(/ - /g, ' ')    // remove standalone hyphens (e.g. abc - def => abs def)
-    .replace(/  +/g, ' ');   // change all multiple spaces to one
+    // https://en.wikipedia.org/wiki/Bullet_(typography)#In_Unicode
+    let bulletsRe = /[\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25D8\u25E6\u2619\u2765\u2767\u29BE\u29BF]/g;
+
+	corpusText = corpusText
+      .trim()
+      .toLowerCase()
+      .replace(/[,.;:\/&+*=~]/g, ' ')            // punctuation: change dots/commas/colons/forward-slashes and some more to spaces
+      .replace(/[`!@#$%^(){}[\]"'<>?\|_]/g, '')  // remove most other punctuation
+      .replace(/[“”‘’\u2013\u2014\u2026]/g, '')  // remove fancy double quotes, single quotes, en/em dashes, ellipsis
+      .replace(/-{2,}/g, ' ')                    // remove sequences of hyphens (p ---- q => p   q)
+      .replace(/\s-\s/g, ' ')                    // remove standalone hyphens (abc - def => abc def)
+      .replace(/([^\s])-\s/g, '$1 ')             // ...and hyphens with space on right side only (abc- def => abc def)
+      .replace(/\s-([^\s])/g, ' $1')             // ...or left side only (abc -def => abc def)
+      .replace(bulletsRe, ' ')                   // change all bullets to space
+      .replace(/\s+/g, ' ');                     // change all whitespace sequences (tabs, line-feeds and so on) to a single space
 
     let rep;
     if ($('input[name="hyphen-behav"]:checked').val() === 'single')
@@ -75,13 +81,11 @@ function checkFormValid() {
 
 function analyzeText() {
     let offset = 0, segSize = parseInt($('#segment-size').val()), count = 0, subArray, segmentTTR, sum = 0;
-    ttrValues = [];
     let until = offset + segSize;
     while (until <= tokenArray.length) {
         subArray = tokenArray.slice(offset, until);
         // use ES6 Set to get unique tokens
         segmentTTR = (new Set(subArray)).size / subArray.length;
-        ttrValues.push(segmentTTR);
         sum += segmentTTR;
         count += 1;
         offset = until;
@@ -91,18 +95,19 @@ function analyzeText() {
     if (count === 0)  // failsafe
         return;
 
+    // remove the last discarded segment, if there is one
+    if (offset < tokenArray.length-1)
+        tokenArray.splice(offset);
+
     // last element in array is average STTR
-    ttrValues.push(sum / count);
-    displayResults(ttrValues);
+    let msttr = sum / count;
+    displayResults(msttr, count);
 }
 
-function displayResults(ttrValues) {
-    $('tbody#sttr-results tr').remove();
-    let value, i;
-    for (i = 0; i < ttrValues.length - 1; i++) {
-        value = Math.round(ttrValues[i] * 1000) / 10;
-        $('tbody#sttr-results').append(`<tr><td>${i + 1}</td><td>${value}%</td></tr>`);
-    }
-    value = Math.round(ttrValues[i] * 1000) / 10;
-    $('tbody#sttr-results').append(`<tr class="table-primary"><th>Average</th><th>${value}%</th></tr>`);
+function displayResults(msttr, count) {
+    let value = Math.round(msttr * 1000) / 10;  // round off to 1 digit
+    $('#sttr-results').val(value + '%');
+    $('#segment-count').html(count);
+    $('#corpus-textarea').val(tokenArray.join(' '));
+    $('#corpus-tokencount').html(tokenArray.length);
 }

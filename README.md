@@ -1,3 +1,3 @@
-# lexaffect.github.io
+# Text Analysis Tools
 
-Affective Lexicon Table
+To help information science and linguistics researchers
