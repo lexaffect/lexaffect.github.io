@@ -193,20 +193,22 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Type-Token Ratio (TTR) is a well-known measure of lexical diversity. It is calculated as ratio of different words to total words in a sample text. Raw TTR is not useful for comparing different texts since it varies with sample size. As the sample size increases, the TTR drops. One solution to this problem is standardizing the sample size. However, to date, the research community has not been able to agree upon a standard sample size.</p>
+            <p>Type-Token Ratio (TTR) is a well-known measure of lexical diversity. It is calculated as ratio of different words (<em>types</em>) to total words (<em>tokens</em>) in a sample text. Raw TTR is not useful for comparing different texts since it varies with sample size. As the sample size increases, the TTR drops. One solution to this problem is standardizing the sample size. However, to date, the research community has not been able to agree upon a standard sample size.</p>
             <p>Segmentation has been proposed as a better solution for calculating TTR across texts with different sample sizes. It involves dividing the sample text into segments of equal sizes, say 200 words, and calculating TTR on each segment. In the end, an average of all those TTR values is calculated. This is termed as Mean Segmental TTR (MSTTR) or Standardized TTR (STTR).</p>
-            <h5>How this app works</h5>
-            <p>Users can paste the raw text directly in the input box or they can choose to upload a text file (*.txt) containing the sample text. This app removes all kinds of punctuation from the text and then counts the total number of tokens. Number of tokens is displayed below the text box &mdash; it is updated live as the text changes. User gets the option to choose the segment size (200 by default) and hyphenation behavior.</p>
-            <p>Upon clicking Submit, the app divides the text into segments of equal length, discards the last segment if its length is smaller than segment size, calculates TTR for each segment and finally computes an average TTR over all segments.</p>
-            <h5>Caution</h5>
-            <p>This app can not eliminate the need of manual review of the text before auto processing. Please read through the text and:</p>
+            <h5>How to use this app</h5>
+            <p>It is recommended that analysis be performed in two steps.</p>
+            <h6>Step1: Manual Filtering</h6>
+            <p>The user should manually read through the text and:</p>
             <ul>
-              <li>decide how hyphenated words should be treated.</li>
-              <li>manually edit any URLs and/or email addresses so that thet contain alphabetical letters only.</li>
+              <li>decide how hyphenated words should be treated (as one token or multiple).</li>
+              <li>remove all non-textual elements like URLs, emails, emojis, bullet points, heading numbers, cross-references, citations etc.</li>
               <li>remove dots from numbers with decimal points otherwise they will be treated as multiple tokens.</li>
               <li>remove numbers for numbered lists (app can take care of bulleted lists).</li>
-              <li>combine together words which are written separately, but are being used as a single term (e.g. a priori)</li>
+              <li>combine together words which are written separately, but are being used as a single term (e.g. <em>a priori</em>)</li>
             </ul>
+            <h6>Step 2: Automated analysis</h6>
+            <p>Once the text had been manually reviewed, it can be directly copy-pasted in the input box or users can choose to upload a text file (*.txt) instead. The app removes <u>all kinds of punctuation</u> from the text and then counts the total number of tokens. Number of tokens is displayed below the text box &mdash; it is updated live as the text changes. User gets the option to choose the segment size (200 by default) and hyphenation behavior.</p>
+            <p>Upon clicking Submit, the app divides the text into segments of equal length, discards the last segment if its length is smaller than segment size, calculates TTR for each segment and finally computes an average TTR over all segments.</p>
           </div>
         </div>
       </div>

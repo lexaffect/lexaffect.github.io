@@ -40,15 +40,15 @@ function preprocessText() {
 	corpusText = corpusText
       .trim()
       .toLowerCase()
-      .replace(/[,.;:\/&+*=~]/g, ' ')            // punctuation: change dots/commas/colons/forward-slashes and some more to spaces
+      .replace(/[,.;:\/\u2013\u2014&+*=~]/g, ' ')// change dot/comma/colon/forward-slash/en/emdash and more to spaces
       .replace(/[`!@#$%^(){}[\]"'<>?\|_]/g, '')  // remove most other punctuation
-      .replace(/[“”‘’\u2013\u2014\u2026]/g, '')  // remove fancy double quotes, single quotes, en/em dashes, ellipsis
+      .replace(/[“”‘’\u2026]/g, '')              // remove fancy double quotes, single quotes, ellipsis
       .replace(/-{2,}/g, ' ')                    // remove sequences of hyphens (p ---- q => p   q)
       .replace(/\s-\s/g, ' ')                    // remove standalone hyphens (abc - def => abc def)
       .replace(/([^\s])-\s/g, '$1 ')             // ...and hyphens with space on right side only (abc- def => abc def)
       .replace(/\s-([^\s])/g, ' $1')             // ...or left side only (abc -def => abc def)
       .replace(bulletsRe, ' ')                   // change all bullets to space
-      .replace(/\s+/g, ' ');                     // change all whitespace sequences (tabs, line-feeds and so on) to a single space
+      .replace(/\s+/g, ' ');                     // change all whitespace chunks to a single space
 
     let rep;
     if ($('input[name="hyphen-behav"]:checked').val() === 'single')
